@@ -1,18 +1,26 @@
 # ÖZN LuckyCare — statik site
 
-## GitHub + Vercel
+## GitHub’a bağlama
 
-1. GitHub’da yeni bir repository oluştur (boş, README ekleme).
-2. Bu klasörde:
+**Önemli:** Aşağıdaki URL’de `senin-kullanici-adin` ve `repo-adi` kısımlarını GitHub’daki gerçek değerlerinle değiştir. Örnek: `https://github.com/w3nzy/ozn-luckycare.git`
+
+1. [github.com/new](https://github.com/new) ile **boş** repo oluştur (README ekleme).
+
+2. Terminalde proje klasöründe:
 
 ```bash
-git remote add origin https://github.com/KULLANICI_ADIN/REPO_ADI.git
+cd "/Users/w3nzy/Desktop/adsız klasör 5"
+
+# Daha önce hatalı origin eklediysen önce sil:
+# git remote remove origin
+
+git remote add origin https://github.com/senin-kullanici-adin/repo-adi.git
 git branch -M main
 git push -u origin main
 ```
 
-3. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → repoyu seç → **Deploy** (Framework: Other, Build Command boş, Output: `.` / kök).
+3. `git push` şifre istememeli; istiyorsa GitHub artık **şifre kabul etmiyor**. [Personal Access Token](https://github.com/settings/tokens) oluşturup şifre yerine yapıştır veya [SSH anahtarı](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) kullan.
 
-Site `*.vercel.app` adresinde yayına alınır; sonraki `git push` ile otomatik yeniden deploy olur.
-# oznluckycare
-# oznluckycare
+## Vercel
+
+[vercel.com/new](https://vercel.com/new) → **Import Git Repository** → repoyu seç → **Deploy** (Framework: Other, build yok).
