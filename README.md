@@ -14,3 +14,5 @@ git push -u origin main
 3. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → repoyu seç → **Deploy** (Framework: Other, Build Command boş, Output: `.` / kök).
 
 Site `*.vercel.app` adresinde yayına alınır; sonraki `git push` ile otomatik yeniden deploy olur.
+# oznluckycare
+# oznluckycare
