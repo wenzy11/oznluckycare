@@ -1,0 +1,8 @@
+{
+  "name": "ozn-luckycare-site",
+  "private": true,
+  "scripts": {
+    "deploy": "vercel deploy --prod",
+    "deploy:preview": "vercel deploy"
+  }
+}
