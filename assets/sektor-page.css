@@ -17,7 +17,13 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; color-scheme: dark; }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
 body.sektor-page {
   font-family: "DM Sans", system-ui, sans-serif;
   background:
@@ -33,6 +39,12 @@ body.sektor-page {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: rgba(125, 211, 252, 0.15);
+}
+@media (max-width: 900px) {
+  body.sektor-page {
+    background-attachment: scroll;
+  }
 }
 
 .sector-gallery h2,
@@ -172,6 +184,9 @@ body.sektor-page {
   position: sticky;
   top: 0;
   z-index: 50;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
   background: rgba(10, 26, 48, 0.9);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-light);
@@ -180,7 +195,7 @@ body.sektor-page {
 .page-header-inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 12px max(20px, env(safe-area-inset-left, 0px)) 12px max(20px, env(safe-area-inset-right, 0px));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -255,6 +270,13 @@ body.sektor-page {
   color: var(--ink-muted);
   text-decoration: none;
   transition: color 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(125, 211, 252, 0.2);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  border-radius: 8px;
 }
 .page-nav a:hover { color: var(--teal); }
 
@@ -286,7 +308,7 @@ body.sektor-page {
 .page-hero__content {
   position: relative;
   z-index: 2;
-  padding: 48px 24px 56px;
+  padding: 48px max(24px, env(safe-area-inset-left, 0px)) 56px max(24px, env(safe-area-inset-right, 0px));
   max-width: var(--max);
   margin: 0 auto;
   width: 100%;
@@ -344,7 +366,7 @@ body.sektor-page {
 .container {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 max(24px, env(safe-area-inset-left, 0px)) 0 max(24px, env(safe-area-inset-right, 0px));
 }
 .prose p {
   color: var(--ink-muted);
@@ -367,6 +389,8 @@ body.sektor-page {
   box-shadow: 0 10px 40px var(--teal-glow);
   text-shadow: 0 1px 2px rgba(15, 40, 90, 0.35);
   transition: transform 0.2s, box-shadow 0.2s;
+  touch-action: manipulation;
+  min-height: 44px;
 }
 .btn-cta:hover {
   transform: translateY(-2px);
@@ -384,12 +408,17 @@ body.sektor-page {
   font-weight: 600;
   color: var(--teal);
   text-decoration: none;
+  touch-action: manipulation;
+  min-height: 44px;
+  padding: 6px 4px 6px 0;
+  border-radius: 8px;
+  -webkit-tap-highlight-color: rgba(125, 211, 252, 0.2);
 }
 .back-link:hover { text-decoration: underline; }
 
 .page-footer {
   border-top: 1px solid var(--border-light);
-  padding: 28px 24px 32px;
+  padding: 28px max(24px, env(safe-area-inset-left)) max(32px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-right));
   background: rgba(7, 18, 36, 0.92);
 }
 .page-footer-inner {
@@ -450,7 +479,12 @@ body.sektor-page {
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
-@media (max-width: 900px) {
+@media (min-width: 520px) and (max-width: 900px) {
+  .sector-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 519px) {
   .sector-gallery__grid {
     grid-template-columns: 1fr;
   }
@@ -480,6 +514,7 @@ body.sektor-page {
   right: 0;
   bottom: 0;
   padding: 10px 12px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -487,4 +522,38 @@ body.sektor-page {
   color: var(--silver-bright);
   background: linear-gradient(to top, rgba(12, 38, 68, 0.92), transparent);
   text-shadow: 0 1px 4px rgba(0, 8, 20, 0.5);
+}
+
+@media (max-width: 600px) {
+  .page-body {
+    padding: 40px 0 56px;
+  }
+  .page-hero {
+    min-height: min(48vh, 360px);
+  }
+  .page-hero__content {
+    padding-top: 36px;
+    padding-bottom: 44px;
+  }
+  .btn-cta {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sector-gallery__item img {
+    transition: none;
+  }
+  .sector-gallery__item:hover img {
+    transform: none;
+  }
+  .prose ul li {
+    transition: none;
+  }
+  .prose ul li:hover {
+    transform: none;
+  }
 }
