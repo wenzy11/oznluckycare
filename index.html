@@ -876,6 +876,30 @@
       opacity: 0.98;
     }
     footer strong { color: var(--silver-bright); }
+    .footer-whatsapp-wrap {
+      margin-top: 12px;
+    }
+    .footer-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ffffff;
+      background: linear-gradient(145deg, #34d399 0%, #22c55e 45%, #16a34a 100%);
+      box-shadow: 0 10px 32px rgba(34, 197, 94, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    .footer-whatsapp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(34, 197, 94, 0.4);
+      text-decoration: none;
+    }
 
     /* Sektör fotoğraf kartları */
     .sector-tiles {
@@ -1231,7 +1255,13 @@
         <img src="assets/logo.png" width="140" height="44" alt="" decoding="async" />
       </span>
     </a>
-    <p><strong>ÖZN LuckyCare</strong> · © <span id="yil"></span> Tüm hakları saklıdır.</p>
+    <p><strong>ÖZN LuckyCare</strong> · © <span id="yil"></span> Tüm hakları saklıdır.<br />
+      Elysium Elit Koşuyolu, Kat 12 No:23, Acıbadem, Şeyh Galip Sk., 34718 Kadıköy/İstanbul<br />
+      Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul<br />
+      <a href="https://wa.me/905016085515?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer">WhatsApp: 0501 608 55 15</a></p>
+    <p class="footer-whatsapp-wrap">
+      <a class="footer-whatsapp-btn" href="https://wa.me/905016085515?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer">WhatsApp'tan Bize Ulasin</a>
+    </p>
   </footer>
 
   <script>

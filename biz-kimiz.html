@@ -41,6 +41,25 @@
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(10px);
     }
+    .about-address {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+    }
+    .about-address h2 {
+      margin-bottom: 12px;
+    }
+    .about-address p {
+      color: var(--ink-muted);
+      margin: 0 0 10px;
+    }
+    .about-address p:last-of-type {
+      margin-bottom: 0;
+    }
     .about-video-wrap {
       width: 100%;
       max-width: 820px;
@@ -94,6 +113,12 @@
           <p class="page-lead">Kurumsal tanıtım</p>
         </section>
 
+        <section class="about-address" aria-labelledby="sirket-adresi-title">
+          <h2 id="sirket-adresi-title">Sirket Adresi</h2>
+          <p>Elysium Elit Kosuyolu, Kat 12 No:23, Acibadem, Seyh Galip Sk., 34718 Kadikoy/Istanbul</p>
+          <p>Zorlu Center, 16. Kat No:346, Levazim, Koru Sk. No:2, 34340 Besiktas/Istanbul</p>
+        </section>
+
         <section class="about-reel" aria-label="Biz Kimiz tanıtım videosu">
           <div class="about-video-wrap">
             <video class="about-video" controls playsinline webkit-playsinline preload="metadata" poster="assets/logo.png" width="1280" height="720">
@@ -111,7 +136,9 @@
       <a href="index.html" class="page-footer-brand" aria-label="Ana sayfaya dön">
         <img src="assets/logo.png" width="200" height="60" alt="ÖZN LuckyCare" decoding="async" />
       </a>
-      <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="index.html">Ana sayfa</a></p>
+      <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="index.html">Ana sayfa</a><br />
+        Elysium Elit Koşuyolu, Kat 12 No:23, Acıbadem, Şeyh Galip Sk., 34718 Kadıköy/İstanbul<br />
+        Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul</p>
     </div>
   </footer>
 </body>

@@ -42,6 +42,9 @@
     <section class="page-body">
       <div class="container">
         <p class="back-row"><a class="back-link" href="../index.html#sektorler">← Sektör listesine dön</a></p>
+        <p class="contact-row">
+          <a class="btn-cta btn-whatsapp" data-whatsapp-sector href="#" target="_blank" rel="noopener noreferrer">WhatsApp ile bize ulaşın</a>
+        </p>
         <div class="prose">
           <h2>Alanlar</h2>
           <ul>
@@ -90,7 +93,9 @@
       <a href="../index.html" class="page-footer-brand" aria-label="Ana sayfaya dön">
         <img src="../assets/logo.png" width="200" height="60" alt="ÖZN LuckyCare" decoding="async" />
       </a>
-      <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="../index.html">Ana sayfa</a></p>
+      <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="../index.html">Ana sayfa</a><br />
+        Elysium Elit Koşuyolu, Kat 12 No:23, Acıbadem, Şeyh Galip Sk., 34718 Kadıköy/İstanbul<br />
+        Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul</p>
     </div>
   </footer>
   <script>
@@ -121,6 +126,17 @@
           video.controls = true;
         });
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var btn = document.querySelector("[data-whatsapp-sector]");
+      if (!btn) return;
+      var sectorEl = document.getElementById("sector-title");
+      var sector = sectorEl ? sectorEl.textContent.trim() : "Genel";
+      var phone = "905016085515";
+      var message = "Merhaba, " + sector + " sektörü için bilgi almak istiyorum.";
+      btn.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
     })();
   </script>
 </body>

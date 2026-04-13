@@ -398,6 +398,17 @@ body.sektor-page {
   box-shadow: 0 14px 48px rgba(59, 130, 246, 0.38);
 }
 
+.contact-row {
+  margin: 0 0 28px;
+}
+.btn-whatsapp {
+  background: linear-gradient(145deg, #34d399 0%, #22c55e 45%, #16a34a 100%);
+  box-shadow: 0 10px 36px rgba(34, 197, 94, 0.35);
+}
+.btn-whatsapp:hover {
+  box-shadow: 0 14px 42px rgba(34, 197, 94, 0.45);
+}
+
 .back-row {
   margin-bottom: 28px;
 }
