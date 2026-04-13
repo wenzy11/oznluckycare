@@ -55,7 +55,7 @@
           <div class="sector-videos__grid">
             <figure class="sector-videos__item">
               <div class="sector-videos__media">
-                <video autoplay muted loop playsinline preload="metadata" poster="../assets/sektor/ai/yat-hero.jpg" width="1920" height="1080">
+                <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="../assets/sektor/ai/yat-hero.jpg" width="1920" height="1080">
                   <source src="../video/yat-1.mp4" type="video/mp4" />
                   Tarayıcınız video oynatmayı desteklemiyor.
                 </video>
@@ -64,7 +64,7 @@
             </figure>
             <figure class="sector-videos__item">
               <div class="sector-videos__media">
-                <video autoplay muted loop playsinline preload="metadata" poster="../assets/sektor/ai/yat-gal-11.png" width="1080" height="1920">
+                <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="../assets/sektor/ai/yat-gal-11.png" width="1080" height="1920">
                   <source src="../video/yat-2.mp4" type="video/mp4" />
                   Tarayıcınız video oynatmayı desteklemiyor.
                 </video>
@@ -137,5 +137,35 @@
       <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="../index.html">Ana sayfa</a></p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var videos = document.querySelectorAll("video.autoplay-video");
+      videos.forEach(function (video) {
+        video.setAttribute("muted", "");
+        video.muted = true;
+
+        var tryPlay = function () {
+          var playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+              video.setAttribute("controls", "");
+              video.controls = true;
+            });
+          }
+        };
+
+        if (video.readyState >= 1) {
+          tryPlay();
+        } else {
+          video.addEventListener("loadedmetadata", tryPlay, { once: true });
+        }
+
+        video.addEventListener("error", function () {
+          video.setAttribute("controls", "");
+          video.controls = true;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

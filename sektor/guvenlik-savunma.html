@@ -55,7 +55,7 @@
           <div class="sector-videos__grid sector-videos__grid--single">
             <figure class="sector-videos__item">
               <div class="sector-videos__media">
-                <video autoplay muted loop playsinline preload="metadata" poster="../assets/sektor/ai/guvenlik-hero.png" width="2160" height="4096">
+                <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="../assets/sektor/ai/guvenlik-hero.png" width="2160" height="4096">
                   <source src="../video/guvenlik-v1.mp4" type="video/mp4" />
                   Tarayıcınız video oynatmayı desteklemiyor.
                 </video>
@@ -92,5 +92,35 @@
       <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="../index.html">Ana sayfa</a></p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var videos = document.querySelectorAll("video.autoplay-video");
+      videos.forEach(function (video) {
+        video.setAttribute("muted", "");
+        video.muted = true;
+
+        var tryPlay = function () {
+          var playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+              video.setAttribute("controls", "");
+              video.controls = true;
+            });
+          }
+        };
+
+        if (video.readyState >= 1) {
+          tryPlay();
+        } else {
+          video.addEventListener("loadedmetadata", tryPlay, { once: true });
+        }
+
+        video.addEventListener("error", function () {
+          video.setAttribute("controls", "");
+          video.controls = true;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
