@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f2848" />
+  <meta name="description" content="ÖZN LuckyCare iletişim bilgileri: telefon, WhatsApp, e-posta ve şirket adresleri." />
+  <title>İletişim | ÖZN LuckyCare</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/sektor-page.css" />
+  <style>
+    .contact-hero {
+      position: relative;
+      min-height: min(44vh, 360px);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .contact-hero__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .contact-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12, 38, 68, 0.95) 0%, rgba(12, 38, 68, 0.4) 60%, rgba(12, 38, 68, 0.2) 100%);
+    }
+    .contact-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px max(24px, env(safe-area-inset-left, 0px)) 46px max(24px, env(safe-area-inset-right, 0px));
+    }
+    .contact-panel {
+      background: #1a1c21;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.32);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .contact-intro {
+      color: rgba(232, 236, 243, 0.86);
+      margin-bottom: 18px;
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .contact-item:first-of-type {
+      border-top: 0;
+      padding-top: 8px;
+    }
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #121419;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f59e0b;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .contact-meta h2 {
+      margin-bottom: 4px;
+      font-size: 1.55rem;
+    }
+    .contact-meta p {
+      margin: 0;
+      color: rgba(232, 236, 243, 0.82);
+      line-height: 1.7;
+    }
+    .contact-meta a {
+      color: rgba(232, 236, 243, 0.9);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-meta a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+    .map-card {
+      margin: 18px auto 0;
+      max-width: 760px;
+      background: #1a1c21;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.32);
+      overflow: hidden;
+    }
+    .map-frame {
+      width: 100%;
+      min-height: 320px;
+      border: 0;
+      border-radius: 12px;
+      display: block;
+    }
+  </style>
+</head>
+<body class="sektor-page">
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="index.html" class="brand-lockup" aria-label="ÖZN LuckyCare ana sayfa">
+        <span class="brand-lockup__mark">
+          <img src="assets/logo.png" width="200" height="60" alt="ÖZN LuckyCare" decoding="async" />
+        </span>
+        <span class="brand-lockup__text">
+          <span class="brand-lockup__name">ÖZN LuckyCare</span>
+          <span class="brand-lockup__tag">Teknoloji · Özen · Yaşam</span>
+        </span>
+      </a>
+      <nav class="page-nav" aria-label="Sayfa menüsü">
+        <a href="index.html">Ana sayfa</a>
+        <a href="index.html#sektorler">Sektörler</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-hero" aria-labelledby="iletisim-title">
+      <img class="contact-hero__bg" src="assets/sektor/ai/guvenlik-hero.png" alt="İletişim arka plan görseli" width="1792" height="1024" loading="eager" decoding="async" />
+      <div class="contact-hero__content">
+        <p class="page-kicker">Kurumsal</p>
+        <h1 id="iletisim-title">İletişim</h1>
+        <p class="page-lead">Bilgi almak, teklif talep etmek veya projelerinizi paylaşmak için bize ulaşın.</p>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="container">
+        <p class="back-row"><a class="back-link" href="index.html">← Ana sayfaya dön</a></p>
+
+        <article class="contact-panel" aria-label="İletişim bilgileri">
+          <p class="contact-intro">
+            Kurumsal bilgi almak, danışmanlık talebi oluşturmak veya projeleriniz için bizimle hızlıca iletişime geçebilirsiniz.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">☎</div>
+            <div class="contact-meta">
+              <h2>Ofis Telefonu</h2>
+              <p><a href="tel:+905016085515">+90 501 608 55 15</a></p>
+              <p><a href="https://wa.me/905016085515?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer">WhatsApp ile yaz</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">✉</div>
+            <div class="contact-meta">
+              <h2>Mail</h2>
+              <p><a href="mailto:oznluckycare@gmail.com">oznluckycare@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">⌖</div>
+            <div class="contact-meta">
+              <h2>Adres</h2>
+              <p>Elysium Elit Koşuyolu, Kat 12 No:23, Acıbadem, Şeyh Galip Sk., 34718 Kadıköy/İstanbul</p>
+              <p>Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul</p>
+            </div>
+          </div>
+        </article>
+
+        <section class="map-card" aria-label="Harita">
+          <iframe
+            class="map-frame"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Elysium%20Elit%20Ko%C5%9Fuyolu%20Ac%C4%B1badem%20Kad%C4%B1k%C3%B6y%20%C4%B0stanbul&output=embed"
+            title="ÖZN LuckyCare şirket konumu"
+          ></iframe>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <a href="index.html" class="page-footer-brand" aria-label="Ana sayfaya dön">
+        <img src="assets/logo.png" width="200" height="60" alt="ÖZN LuckyCare" decoding="async" />
+      </a>
+      <p class="page-footer-copy"><strong>ÖZN LuckyCare</strong> · <a href="index.html">Ana sayfa</a><br />
+        Elysium Elit Koşuyolu, Kat 12 No:23, Acıbadem, Şeyh Galip Sk., 34718 Kadıköy/İstanbul<br />
+        Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul</p>
+    </div>
+  </footer>
+</body>
+</html>
