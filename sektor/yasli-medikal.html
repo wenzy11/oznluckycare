@@ -27,6 +27,12 @@
       <nav class="page-nav" aria-label="Sayfa menüsü">
         <a href="../index.html#sektorler">Tüm sektörler</a>
       </nav>
+      <div class="lang-switch" aria-label="Dil secici">
+        <button type="button" class="lang-switch__btn" data-site-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" class="lang-switch__btn" data-site-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang-switch__btn" data-site-lang="ar" aria-pressed="false">AR</button>
+        <button type="button" class="lang-switch__btn" data-site-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </div>
   </header>
   <main>
@@ -179,6 +185,111 @@
       var phone = "905016085515";
       var message = "Merhaba, " + sector + " sektörü için bilgi almak istiyorum.";
       btn.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    })();
+  </script>
+  <script>
+    (function () {
+      var currentLang = localStorage.getItem("site-lang") || "tr";
+      var textNodeMap = new WeakMap();
+      var cache = {};
+
+      function setLangState(lang) {
+        document.querySelectorAll("[data-site-lang]").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-site-lang") === lang ? "true" : "false");
+        });
+      }
+
+      function shouldSkip(node) {
+        if (!node || !node.parentElement) return true;
+        var parent = node.parentElement;
+        if (parent.closest("script, style, noscript, .lang-switch")) return true;
+        var text = node.nodeValue;
+        if (!text || !text.trim()) return true;
+        return false;
+      }
+
+      function collectTextNodes() {
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        var nodes = [];
+        while (walker.nextNode()) {
+          var n = walker.currentNode;
+          if (shouldSkip(n)) continue;
+          if (!textNodeMap.has(n)) {
+            textNodeMap.set(n, n.nodeValue);
+          }
+          nodes.push(n);
+        }
+        return nodes;
+      }
+
+      function restoreOriginal() {
+        collectTextNodes().forEach(function (n) {
+          var original = textNodeMap.get(n);
+          if (typeof original === "string") n.nodeValue = original;
+        });
+      }
+
+      function translateText(text, targetLang) {
+        if (!cache[targetLang]) cache[targetLang] = {};
+        if (cache[targetLang][text]) return Promise.resolve(cache[targetLang][text]);
+
+        var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=tr&tl=" +
+          encodeURIComponent(targetLang) + "&dt=t&q=" + encodeURIComponent(text);
+
+        return fetch(url)
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            var translated = text;
+            if (Array.isArray(data) && Array.isArray(data[0])) {
+              translated = data[0].map(function (part) { return part[0] || ""; }).join("");
+            }
+            cache[targetLang][text] = translated;
+            return translated;
+          })
+          .catch(function () {
+            return text;
+          });
+      }
+
+      function setDirection(lang) {
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      }
+
+      function applyLanguage(lang) {
+        setLangState(lang);
+        setDirection(lang);
+        localStorage.setItem("site-lang", lang);
+        currentLang = lang;
+
+        if (lang === "tr") {
+          restoreOriginal();
+          return Promise.resolve();
+        }
+
+        restoreOriginal();
+        var nodes = collectTextNodes();
+        var tasks = nodes.map(function (node) {
+          var original = textNodeMap.get(node) || node.nodeValue;
+          return translateText(original, lang).then(function (translated) {
+            node.nodeValue = translated;
+          });
+        });
+
+        return Promise.all(tasks).then(function () {});
+      }
+
+      document.querySelectorAll("[data-site-lang]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var lang = btn.getAttribute("data-site-lang");
+          applyLanguage(lang);
+        });
+      });
+
+      setLangState(currentLang);
+      setDirection(currentLang);
+      if (currentLang !== "tr") {
+        setTimeout(function () { applyLanguage(currentLang); }, 50);
+      }
     })();
   </script>
 </body>

@@ -257,6 +257,38 @@ body.sektor-page {
     height: 42px;
   }
 }
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 6px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+  background: rgba(22, 36, 58, 0.6);
+  flex-shrink: 0;
+}
+.lang-switch__btn {
+  min-width: 38px;
+  min-height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--silver-bright);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 0 10px;
+  touch-action: manipulation;
+}
+.lang-switch__btn[aria-pressed="true"] {
+  background: linear-gradient(145deg, #93c5fd 0%, #60a5fa 40%, var(--teal-deep) 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+}
+
 .page-nav {
   display: flex;
   flex-wrap: wrap;
@@ -598,6 +630,14 @@ body.sektor-page {
 }
 
 @media (max-width: 600px) {
+  .page-header-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .lang-switch {
+    width: 100%;
+    justify-content: flex-end;
+  }
   .page-body {
     padding: 40px 0 56px;
   }
