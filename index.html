@@ -264,11 +264,37 @@
 
     .nav-toggle-wrap { display: none; }
     @media (max-width: 900px) {
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 10px 12px;
+      }
+      .logo {
+        order: 1;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
       header .header-inner > nav.main-nav {
         display: none;
       }
       nav.main-nav ul#desktop-nav { display: none; }
-      .nav-toggle-wrap { display: flex; align-items: center; }
+      .nav-toggle-wrap {
+        order: 2;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        flex: 0 0 auto;
+      }
+      .lang-switch {
+        order: 3;
+        width: 100%;
+        justify-content: flex-end;
+        margin-left: 0;
+      }
+      .lang-switch__btn {
+        min-width: 34px;
+        min-height: 32px;
+        padding: 0 8px;
+      }
       #nav-panel {
         position: fixed;
         top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
