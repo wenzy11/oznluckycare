@@ -127,8 +127,8 @@
 
         <section class="about-reel" aria-label="Biz Kimiz tanıtım videosu">
           <div class="about-video-wrap">
-            <video class="about-video" controls playsinline webkit-playsinline preload="metadata" poster="assets/logo.png" width="1280" height="720">
-              <source src="video/biz-kimiz-v1.mp4" type="video/mp4" />
+            <video class="about-video" data-video-default="video/biz-kimiz-v2.mp4" data-video-en="video/biz-kimiz-en.mp4" data-video-ar="video/biz-kimiz-ar.mp4" data-video-ru="video/biz-kimiz-ru.mp4" controls playsinline webkit-playsinline preload="metadata" poster="assets/logo.png" width="1280" height="720">
+              <source src="video/biz-kimiz-v2.mp4" type="video/mp4" />
               Tarayıcınız video oynatmayı desteklemiyor.
             </video>
           </div>
@@ -250,6 +250,65 @@
       if (currentLang !== "tr") {
         setTimeout(function () { applyLanguage(currentLang); }, 50);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var video = document.querySelector('video.about-video[data-video-default][data-video-ar]');
+      if (!video) return;
+
+      var srcDefault = video.getAttribute('data-video-default') || 'video/biz-kimiz-v2.mp4';
+      var srcEn = video.getAttribute('data-video-en') || 'video/biz-kimiz-en.mp4';
+      var srcAr = video.getAttribute('data-video-ar') || 'video/biz-kimiz-ar.mp4';
+      var srcRu = video.getAttribute('data-video-ru') || 'video/biz-kimiz-ru.mp4';
+
+      function pickBase(lang) {
+        if (lang === 'ar') return srcAr;
+        if (lang === 'en') return srcEn;
+        if (lang === 'ru') return srcRu;
+        return srcDefault;
+      }
+
+      function getLang() {
+        var pressed = document.querySelector('[data-site-lang][aria-pressed="true"]');
+        if (pressed) return pressed.getAttribute('data-site-lang') || 'tr';
+        return localStorage.getItem('site-lang') || 'tr';
+      }
+
+      function setVideoSource(lang) {
+        var base = pickBase(lang);
+        var wanted = base + (base.indexOf('?') === -1 ? '?' : '&') + 'v=' + encodeURIComponent(lang) + '&t=' + Date.now();
+
+        var source = video.querySelector('source');
+        if (!source) return;
+
+        var wasPaused = video.paused;
+        var t = video.currentTime || 0;
+
+        video.pause();
+        source.src = wanted;
+        video.load();
+
+        video.addEventListener('loadedmetadata', function () {
+          try { video.currentTime = Math.min(t, Math.max(0, (video.duration || 0) - 0.25)); } catch (e) {}
+          if (!wasPaused) {
+            var p = video.play();
+            if (p && typeof p.catch === 'function') p.catch(function () {});
+          }
+        }, { once: true });
+      }
+
+      setVideoSource(getLang());
+
+      document.querySelectorAll('[data-site-lang]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setVideoSource(btn.getAttribute('data-site-lang') || 'tr');
+        });
+      });
+
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'site-lang') setVideoSource(getLang());
+      });
     })();
   </script>
 </body>
