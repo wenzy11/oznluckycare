@@ -75,6 +75,20 @@
             <li>Projeye özel sürdürülebilir drenaj ve zemin çözümleri</li>
           </ul>
         </div>
+        <section class="sector-videos" aria-labelledby="v-peyzaj">
+          <h2 id="v-peyzaj">Video</h2>
+          <div class="sector-videos__grid">
+            <figure class="sector-videos__item">
+              <div class="sector-videos__media">
+                <video class="autoplay-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="../assets/sektor/ai/peyzaj-havuz-hero.png" width="1280" height="720">
+                  <source src="../video/peyzaj-havuz-v1.mp4" type="video/mp4" />
+                  Tarayıcınız video oynatmayı desteklemiyor.
+                </video>
+              </div>
+              <figcaption class="sector-videos__cap">Havuz ve su hizmetleri</figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="sector-gallery" aria-labelledby="g-peyzaj">
           <h2 id="g-peyzaj">Görsel galeri</h2>
           <div class="sector-gallery__grid">
@@ -109,6 +123,36 @@
         Zorlu Center, 16. Kat No:346, Levazım, Koru Sk. No:2, 34340 Beşiktaş/İstanbul</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var videos = document.querySelectorAll("video.autoplay-video");
+      videos.forEach(function (video) {
+        video.setAttribute("muted", "");
+        video.muted = true;
+
+        var tryPlay = function () {
+          var playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+              video.setAttribute("controls", "");
+              video.controls = true;
+            });
+          }
+        };
+
+        if (video.readyState >= 1) {
+          tryPlay();
+        } else {
+          video.addEventListener("loadedmetadata", tryPlay, { once: true });
+        }
+
+        video.addEventListener("error", function () {
+          video.setAttribute("controls", "");
+          video.controls = true;
+        });
+      });
+    })();
+  </script>
   <script>
     (function () {
       var btn = document.querySelector("[data-whatsapp-sector]");
